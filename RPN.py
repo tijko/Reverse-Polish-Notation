@@ -8,7 +8,10 @@ def RPN(equation):
         if token.isdigit():
             out.append(token)
         else:
-            if len(stack) == 1 and token in ops and ops[token] <= ops[stack[-1]] and token != '(':
+            if (len(stack) == 1 and 
+                token in ops and 
+                ops[token] <= ops[stack[-1]] and 
+                token != '('):
                 out.append(stack[-1])
                 stack.pop(-1)
                 stack.append(token)
@@ -27,7 +30,10 @@ def RPN(equation):
                     out.append(stack[-1])
                     stack.pop(-1)
                 stack.pop(-1)
-            elif len(stack) > 1 and token in ops and ops[token] >= ops[stack[-1]] and stack[-1] != '(':
+            elif (len(stack) > 1 and 
+                  token in ops and 
+                  ops[token] >= ops[stack[-1]] and 
+                  stack[-1] != '('):
                 out.append(stack[-1])
                 stack.pop(-1)
                 stack.append(token)
@@ -45,4 +51,11 @@ def RPN(equation):
         fin += ' ' + i
     print fin
 
-RPN(sys.argv[1])
+
+if __name__ == '__main__':
+    try:
+        data = sys.argv[1]
+    except IndexError:
+        print 'No input was given.'
+        return
+    RPN(data)
