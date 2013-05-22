@@ -55,7 +55,6 @@ def RPN(equation):
 if __name__ == '__main__':
     try:
         data = sys.argv[1]
+        RPN(data)
     except IndexError:
         print 'No input was given.'
-        return
-    RPN(data)
